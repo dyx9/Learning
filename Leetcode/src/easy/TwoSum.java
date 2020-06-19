@@ -20,6 +20,7 @@ public class TwoSum {
         return result;
     }
 
+    // O(n)
     public static int[] twoSumHash(int [] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
