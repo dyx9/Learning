@@ -30,8 +30,22 @@ public class Palindrome {
         return true;
     }
 
+    public static boolean isPalindrome(String s) {
+        StringBuilder preProcess = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isLetterOrDigit(c)) {
+                preProcess.append(Character.toLowerCase(c));
+            }
+        }
+
+        StringBuilder reverse = new StringBuilder(preProcess).reverse();
+        return preProcess.toString().equals(reverse.toString());
+    }
+
     public static void main(String[] args) {
         System.out.println(isPalindrome(12321));
+        System.out.println(isPalindrome("race a car"));
     }
 
 }
