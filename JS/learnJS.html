@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Hello</h2>
+
+<p>This is the page for learning JavaScript</p>
+
+<p id="demo"></p>
+
+<script>
+	let age
+
+	age = prompt('how old are you?', 100);
+	let result = confirm(`are you sure you are ${age} years old?`);
+	if (result) {
+		alert(`you are ${age} years old`);
+	}
+	else{
+		age = prompt('how old are you?', 100);
+	}
+
+
+</script>
+
+</body>
+</html>
