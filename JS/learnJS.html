@@ -9,16 +9,36 @@
 <p id="demo"></p>
 
 <script>
-	let age
 
-	age = prompt('how old are you?', 100);
-	let result = confirm(`are you sure you are ${age} years old?`);
-	if (result) {
-		alert(`you are ${age} years old`);
+	let theNumber = 84
+	while (1){
+		let guess = prompt("Guess a number")
+			console.log(guess)
+		if (guess == null || ' ') {
+			break;
+		}
+		else if (guess < theNumber) {
+			alert("too small");
+		}
+		else if (guess > theNumber) {
+			alert("too large");
+		}
+		else if (guess === theNumber){
+			break;
+		}
 	}
-	else{
-		age = prompt('how old are you?', 1000);
-	}
+
+
+
+	// let ask = (question, yes, no) => {
+	// 	confirm(question) ? yes() : no()
+	// }
+
+	// ask(
+	// 	"Do you agree?", 
+	// 	() => alert("You agreed"),
+	// 	() => alert("You cancled"),
+	// );
 
 
 </script>
