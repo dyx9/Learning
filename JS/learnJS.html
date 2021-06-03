@@ -2,46 +2,23 @@
 <html>
 <body>
 
-<h2>Hello</h2>
+<h2>Reverse</h2>
 
-<p>This is the page for learning JavaScript</p>
+<p>Reverse a Number</p>
 
 <p id="demo"></p>
 
 <script>
 
-	// object tests
-
-	let menu = {
-	  width: 200,
-	  height: 300,
-	  title: "My menu"
-	};
-
-	multiplyNumeric(menu);
-
-	function multiplyNumeric(obj) {
-		for (key in obj) {
-			if ( !isNaN(obj[key]) ) obj[key] *= 2;
-		}
+	let number = +prompt("Please enter a number")
+	let results = 0;
+	let lastDigit = 0;
+	while (number > 0) {
+		lastDigit = number % 10;
+		results = results * 10 + lastDigit;
+		number = number / 10|0;
 	}
-
-	for (key in menu) {
-		console.log(menu[key]);
-	}	
-	
-
-
-	// let ask = (question, yes, no) => {
-	// 	confirm(question) ? yes() : no()
-	// }
-
-	// ask(
-	// 	"Do you agree?",
-	// 	() => alert("You agreed"),
-	// 	() => alert("You cancled"),
-	// );
-
+	console.log(results);
 
 </script>
 
