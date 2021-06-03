@@ -10,26 +10,26 @@
 
 <script>
 
-	let theNumber = 84
-	while (1){
-		let guess = prompt("Guess a number")
-			console.log(guess)
-		if (guess == null || ' ') {
-			break;
-		}
-		else if (guess < theNumber) {
-			alert("too small");
-		}
-		else if (guess > theNumber) {
-			alert("too large");
-		}
-		else if (guess === theNumber){
-			break;
+	// object tests
+
+	let menu = {
+	  width: 200,
+	  height: 300,
+	  title: "My menu"
+	};
+
+	multiplyNumeric(menu);
+
+	function multiplyNumeric(obj) {
+		for (key in obj) {
+			if ( !isNaN(obj[key]) ) obj[key] *= 2;
 		}
 	}
 
-	// test for autom
-
+	for (key in menu) {
+		console.log(menu[key]);
+	}	
+	
 
 
 	// let ask = (question, yes, no) => {
