@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Reverse</h2>
+
+<p>Reverse a Number</p>
+
+<p id="demo"></p>
+
+<script>
+
+	let number = +prompt("Please enter a number")
+	let results = 0;
+	let lastDigit = 0;
+	while (number > 0) {
+		lastDigit = number % 10;
+		results = results * 10 + lastDigit;
+		number = number / 10|0;
+	}
+	console.log(results);
+
+</script>
+
+</body>
+</html>
