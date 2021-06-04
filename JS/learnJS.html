@@ -10,15 +10,29 @@
 
 <script>
 
-	let number = +prompt("Please enter a number")
-	let results = 0;
-	let lastDigit = 0;
-	while (number > 0) {
-		lastDigit = number % 10;
-		results = results * 10 + lastDigit;
-		number = number / 10|0;
-	}
-	console.log(results);
+  let calculator = {
+  	v1 : null,
+  	v2 : null,
+
+    read() {
+       this.v1 = +prompt("Please enter the first value");
+       this.v2 = +prompt("please enter the second value");
+    },
+
+    sum() {
+      return this.v1 + this.v2;
+    },
+
+    mul() {
+      return this.v1 * this.v2;
+    },
+
+  };
+
+
+  calculator.read();
+  alert( calculator.sum() );
+  alert( calculator.mul() );
 
 </script>
 
