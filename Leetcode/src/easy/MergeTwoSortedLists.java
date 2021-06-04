@@ -1,5 +1,12 @@
 package easy;
 
+import java.util.LinkedList;
+
+/**
+ * merge two sorted (same sorting order) lists in-place
+ * input: head of each list
+ * return: the head of the merged list
+ */
 class MergeTwoSortedLists {
 
     private static class ListNode {
@@ -10,24 +17,28 @@ class MergeTwoSortedLists {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
-    private ListNode mergeTwoSortedListsIterative(ListNode l1, ListNode l2) {
-        ListNode preHead = new ListNode(-1);
-        ListNode pre = preHead;
+    static ListNode mergeIteratively(ListNode l1, ListNode l2) {
+
+        ListNode dummyNode = new ListNode(0);       // track current sorted node
+        ListNode head = dummyNode;                      // a node used to return the head after sorting
 
         while (l1 != null && l2 != null) {
-            if (l1.val <= l2.val) {
-                pre.next = l1;
+            if (l1.val < l2.val) {
+                dummyNode.next = l1;
                 l1 = l1.next;
             }
             else {
-                pre.next = l2;
+                dummyNode.next = l2;
                 l2 = l2.next;
             }
-            pre = pre.next;
+            dummyNode = dummyNode.next;
         }
-        pre.next = l1 == null ? l2 : l1;
-        return preHead.next;
+
+        // when one of the list exhausts, append the rest of the other list to the current sorted node
+        dummyNode.next = l1 == null ? l2 : l1;
+        return head.next;
     }
+
 
     private ListNode mergeTwoSortedListsRecursive(ListNode l1, ListNode l2) {
         if (l1 == null) return l2;
@@ -38,6 +49,30 @@ class MergeTwoSortedLists {
         }
         else l2.next = mergeTwoSortedListsRecursive(l1 ,l2.next);
         return l2;
+    }
+
+    static private void printList(ListNode node) {
+        LinkedList<Integer> results = new LinkedList<>();
+        while (node != null) {
+            results.add(node.val);
+            node = node.next;
+        }
+        System.out.println(results);
+    }
+
+
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1);
+        l1.next = new ListNode(2);
+        l1.next.next = new ListNode(4);
+
+        ListNode l2 = new ListNode(2);
+        l2.next = new ListNode(4);
+        l2.next.next = new ListNode(5);
+
+        printList(mergeIteratively(l1, l2));
+
     }
 
 }
