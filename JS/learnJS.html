@@ -10,29 +10,22 @@
 
 <script>
 
-  let calculator = {
-  	v1 : null,
-  	v2 : null,
+  function Accumulator(initialNumber) {
+      this.value = initialNumber;
 
-    read() {
-       this.v1 = +prompt("Please enter the first value");
-       this.v2 = +prompt("please enter the second value");
-    },
-
-    sum() {
-      return this.v1 + this.v2;
-    },
-
-    mul() {
-      return this.v1 * this.v2;
-    },
-
-  };
+      this.read = function () {
+          this.enteredNumber = +prompt("Please enter a value");
+          this.value += this.enteredNumber;
+      };
+  }
 
 
-  calculator.read();
-  alert( calculator.sum() );
-  alert( calculator.mul() );
+  let accumulator = new Accumulator(1); // initial value 1
+
+  accumulator.read(); // adds the user-entered value
+  accumulator.read(); // adds the user-entered value
+
+  alert(accumulator.value); // shows the sum of these values
 
 </script>
 
