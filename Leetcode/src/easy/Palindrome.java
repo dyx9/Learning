@@ -3,32 +3,46 @@ package easy;
 public class Palindrome {
 
     public static boolean isPalindrome(int x) {
-        String input = Integer.toString(x);
-        char [] array = input.toCharArray();;
 
-        int i = 0;
-        int j = array.length - 1;
-        if (array[0] == '-') return false;
-        else if (array.length % 2 == 0) {
-            while (i <= array.length / 2 && j >= array.length / 2) {
-                if (array[i] == array[j]) {
-                    i++;
-                    j--;
-                }
-                else return false;
-            }
+        // negative nums or the last digit is 0
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
         }
-        else {
-            while (i < array.length / 2 && j > array.length / 2) {
-                if (array[i] == array[j]) {
-                    i++;
-                    j--;
-                }
-                else return false;
+
+        String s = Integer.toString(x);
+        
+        // pointer to the last digit
+        int end = s.length()-1;
+
+        for (int i = 0; i < end; i++) {
+            if (s.charAt(i) == s.charAt(end)) {
+                end -= 1;
+            }
+            else {
+                return false;
             }
         }
         return true;
+
     }
+
+    // math version
+
+    // public boolean isPalindrome(int x) {
+    //     if (x < 0 || (x % 10 == 0 && x != 0)) {
+    //         return false;
+    //     }
+
+    //     int revertedNumber = 0;
+    //     while (x > revertedNumber) {
+    //         revertedNumber = revertedNumber * 10 + x % 10;
+    //         x /= 10;
+    //     }
+
+    //     return x == revertedNumber || x == revertedNumber / 10;
+    // }
+
+
 
     public static boolean isPalindrome(String s) {
         StringBuilder preProcess = new StringBuilder();
