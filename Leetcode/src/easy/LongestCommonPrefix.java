@@ -2,25 +2,26 @@ package easy;
 
 public class LongestCommonPrefix {
 
-    public static String longestCommonPrefix(String[] str) {
-        if (str == null || str.length == 0) {
+    public static String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) {
             return "";
         }
 
-        int length = str[0].length();
-        int amount = str.length;
-        for (int i = 0; i < length; i++) {
-            char c = str[0].charAt(i);
-            // start from the second element
-            for (int j = 1; j < amount; j++) {
-                // compare length before accessing the next element
-                // if reverse the order, ["aa", "a"] will throw exception
-                if (str[j].length() == i || str[j].charAt(i) != c) {
-                    return str[0].substring(0,i);
+        // make the first string as the prefix
+        String prefix = strs[0];
+
+        // start from the second string
+        for (int i = 1; i < strs.length; i++) {
+            // while the prefix does not appear in any other strings
+            while (strs[i].indexOf(prefix) != 0) {
+                // shorten the prefix by remove the last char
+                prefix = prefix.substring(0, prefix.length() - 1);
+                if (prefix.isEmpty()) {
+                    return "";
                 }
             }
         }
-        return str[0];
+        return prefix;
     }
 
     public static void main(String[] args) {
