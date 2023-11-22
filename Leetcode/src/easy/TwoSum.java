@@ -22,21 +22,22 @@ public class TwoSum {
 
     // O(n)
     public static int[] twoSumHash(int [] nums, int target) {
+
+        // use hashmap to remember previous visited number
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[] {map.get(target-nums[i]),i};
+            }
+            // store visited number and its index 
             map.put(nums[i], i);
         }
-        for (int i = 0; i < map.size(); i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement) && map.get(complement) != i)
-                return new int [] {i, map.get(complement)};
-        }
-        throw new IllegalArgumentException("No two sum solution");
+        return new int[0];
     }
 
 
     public static void main(String[] args) {
-        int [] input = new int[] {2, 7, 11, 15};
-        System.out.println(Arrays.toString(twoSum(input, 9)));
+        int [] input = new int[] {1,1,1,1,1,4,1,1,1,1,1,7,1,1,1,1,1};
+        System.out.println(Arrays.toString(twoSumHash(input, 11)));
     }
 }
