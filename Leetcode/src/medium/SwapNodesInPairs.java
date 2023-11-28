@@ -32,10 +32,19 @@ public class SwapNodesInPairs {
     }
 
     private ListNode swapPairsRecursive(ListNode head) {
+        // stop when there is no node or only one node
         if (head == null || head.next == null) {
             return head;
         }
-        
+
+        // keep the second node
+        ListNode second = head.next;
+        // the first node will point to the rest of the list
+        head.next = swapPairsRecursive(second.next);
+        // the swapped second becomes the first node, so point to the original head
+        second.next = head;
+        // return the current first node
+        return second;
     }
 
     public static void main(String[] args) {
