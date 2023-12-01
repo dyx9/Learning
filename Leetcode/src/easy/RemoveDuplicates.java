@@ -1,6 +1,5 @@
 package easy;
 
-import java.util.Arrays;
 
 /**
  * remove duplicates in a sorted array
@@ -9,41 +8,22 @@ import java.util.Arrays;
 public class RemoveDuplicates {
 
     public static int removeDuplicates(int[] nums) {
+        //  left pointer i points to the latest sorted unduplicated item
         int i = 0;
         for (int j = 1; j < nums.length; j++) {
+            // if value of left pointer != that of right pointer
+            // which meams we find the next unduplicate value
             if (nums[i] != nums[j]) {
+                // increment the left pointer, which give the new index to store the found duplicate
                 i++;
                 nums[i] = nums[j];
             }
+            // if value of left pointer == that of right pointer
+            // -> dupilicated value, keep moving right pointer
         }
         return i+1;
     }
 
-/*    public static int removeDuplicates(int[] nums) {
-        int i = 0;
-        for (int j = 0; j < nums.length; j++) {
-            if (nums[i] != nums[j]) {
-                if (i != j-1) swap(nums,i+1,j);
-                i++;
-            }
-        }
-
-        int count = 0;
-        for (int k = 1; k < nums.length; k++) {
-            if (nums[k] > nums[k-1]) {
-                count++;
-            }
-        else break;
-        }
-        return count+1;
-}
-
-    private static void swap(int [] nums, int i,int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-*/
 
 
     public static void main(String[] args) {
