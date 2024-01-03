@@ -29,6 +29,7 @@ public class IntersectionOfLinkedLists {
     }
 
     // two pointers
+    // https://leetcode.cn/problems/intersection-of-two-linked-lists/submissions/493050943/?envType=study-plan-v2&envId=top-100-liked
     public ListNode getIntersectionNodeTwoPointers(ListNode headA, ListNode headB) {
         ListNode A = headA, B = headB;
         while (A != B) {
