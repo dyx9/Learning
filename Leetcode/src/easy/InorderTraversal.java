@@ -54,10 +54,10 @@ public class InorderTraversal {
         return res;
     }
 
-    // O(n) time and O(1) space
-    public List<Integer> inorderTraversalMorris(TreeNode root) {
+    // // O(n) time and O(1) space
+    // public List<Integer> inorderTraversalMorris(TreeNode root) {
 
-    }
+    // }
 
     public static void main(String[] args) {
         // test tree

@@ -17,6 +17,7 @@ class MergeTwoSortedLists {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
+    // O(n+m) time, O(1) space
     static ListNode mergeIteratively(ListNode l1, ListNode l2) {
 
         ListNode dummyNode = new ListNode(0);       // track current sorted node
@@ -40,6 +41,7 @@ class MergeTwoSortedLists {
     }
 
 
+    // O(n+m) time, O(n+m) space
     private ListNode mergeTwoSortedListsRecursive(ListNode l1, ListNode l2) {
         if (l1 == null) return l2;
         else if (l2 == null) return l1;

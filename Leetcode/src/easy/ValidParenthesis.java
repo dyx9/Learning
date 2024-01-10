@@ -12,8 +12,10 @@ public class ValidParenthesis {
             else if (c == '{') stack.push('}');
             else if (c == '[') stack.push(']');
             // check if the last char is the same as the closing parenthesis
+            // if the stack is empty -> extra closing parenthesis
             else if (stack.isEmpty() || c != stack.pop()) return false;
         }
+        // if the stack is not empty -> extra opening parenthesis
         return stack.isEmpty();
     }
 

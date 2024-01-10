@@ -3,7 +3,7 @@ package easy;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RomanToInte {
+public class RomanToInt {
 
     public static int romanToInt(String s) {
 
