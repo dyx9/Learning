@@ -1,6 +1,9 @@
-/*
- See LICENSE folder for this sample’s licensing information.
- */
+//
+//  ContentView.swift
+//  Scrumdinger
+//
+//  Created by Yixuan Dai on 20/03/2024.
+//
 
 import SwiftUI
 
@@ -39,8 +42,6 @@ struct MeetingView: View {
     }
 }
 
-struct MeetingView_Previews: PreviewProvider {
-    static var previews: some View {
-        MeetingView()
-    }
+#Preview {
+    MeetingView()
 }

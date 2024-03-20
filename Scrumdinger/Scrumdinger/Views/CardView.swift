@@ -1,6 +1,9 @@
-/*
- See LICENSE folder for this sample’s licensing information.
- */
+//
+//  CardView.swift
+//  Scrumdinger
+//
+//  Created by Yixuan Dai on 20/03/2024.
+//
 
 import SwiftUI
 
@@ -10,14 +13,11 @@ struct CardView: View {
         VStack(alignment: .leading) {
             Text(scrum.title)
                 .font(.headline)
-                .accessibilityAddTraits(.isHeader)
             Spacer()
             HStack {
                 Label("\(scrum.attendees.count)", systemImage: "person.3")
-                    .accessibilityLabel("\(scrum.attendees.count) attendees")
                 Spacer()
                 Label("\(scrum.lengthInMinutes)", systemImage: "clock")
-                    .accessibilityLabel("\(scrum.lengthInMinutes) minute meeting")
                     .labelStyle(.trailingIcon)
             }
             .font(.caption)

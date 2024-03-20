@@ -1,6 +1,9 @@
-/*
- See LICENSE folder for this sample’s licensing information.
- */
+//
+//  Theme.swift
+//  Scrumdinger
+//
+//  Created by Yixuan Dai on 20/03/2024.
+//
 
 import SwiftUI
 

@@ -1,15 +1,29 @@
-/*
- See LICENSE folder for this sample’s licensing information.
- */
+//
+//  DailyScrum.swift
+//  Scrumdinger
+//
+//  Created by Yixuan Dai on 20/03/2024.
+//
 
 import Foundation
 
-struct DailyScrum {
+struct DailyScrum: Identifiable {
     var title: String
     var attendees: [String]
     var lengthInMinutes: Int
     var theme: Theme
+    
+    let id: UUID
+    
+    init(id: UUID = UUID(), title: String, attendees: [String], lengthInMinutes: Int, theme: Theme) {
+        self.id = id
+        self.title = title
+        self.attendees = attendees
+        self.lengthInMinutes = lengthInMinutes
+        self.theme = theme
+    }
 }
+
 
 extension DailyScrum {
     static let sampleData: [DailyScrum] =
