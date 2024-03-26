@@ -15,6 +15,7 @@ struct EmojiMemoryView: View {
     var body: some View {
         VStack {
             cards
+                .foregroundStyle(viewModel.color)
                 .animation(.default, value: viewModel.cards)
             Button("Shuffle") {
                 viewModel.shuffle()
@@ -29,38 +30,10 @@ struct EmojiMemoryView: View {
                 .padding(4)
                 .onTapGesture {
                     viewModel.choose(card)
-            }
+                }
         }
-        .foregroundStyle(.orange)
     }
     
-
-}
-
-struct CardView: View {
-
-    var card: MemoryGame<String>.Card
-    
-    init(_ card: MemoryGame<String>.Card) {
-        self.card = card
-    }
-    
-    var body: some View {
-        ZStack {
-            let base = RoundedRectangle(cornerRadius: 25.0)
-            Group {
-                base.foregroundColor(.white)
-                base.strokeBorder(lineWidth: 2)
-                Text(card.content)
-                    .font(.system(size: 200))
-                    .minimumScaleFactor(0.01)
-                    .aspectRatio(1, contentMode: .fit)
-            }
-            .opacity(card.isFaceUp ? 1 : 0)
-            base.opacity(card.isFaceUp ? 0 : 1)
-        }
-        .opacity(card.isFaceUp || !card.isMatched ? 1 : 0 )
-    }
 }
 
 
