@@ -15,6 +15,7 @@
 		5C181BF62BB441E000536ACD /* EmojiArtDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C181BF52BB441E000536ACD /* EmojiArtDocument.swift */; };
 		5C181BF82BB4437000536ACD /* EmojiArtDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C181BF72BB4437000536ACD /* EmojiArtDocumentView.swift */; };
 		5C181BFA2BB446B700536ACD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C181BF92BB446B700536ACD /* Extensions.swift */; };
+		5C181BFC2BB5D4EF00536ACD /* Sturldata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C181BFB2BB5D4EF00536ACD /* Sturldata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		5C181BF52BB441E000536ACD /* EmojiArtDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocument.swift; sourceTree = "<group>"; };
 		5C181BF72BB4437000536ACD /* EmojiArtDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocumentView.swift; sourceTree = "<group>"; };
 		5C181BF92BB446B700536ACD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5C181BFB2BB5D4EF00536ACD /* Sturldata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sturldata.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				5C181BF52BB441E000536ACD /* EmojiArtDocument.swift */,
 				5C181BF72BB4437000536ACD /* EmojiArtDocumentView.swift */,
 				5C181BF92BB446B700536ACD /* Extensions.swift */,
+				5C181BFB2BB5D4EF00536ACD /* Sturldata.swift */,
 				5C181BE92BB4409400536ACD /* Assets.xcassets */,
 				5C181BEB2BB4409400536ACD /* Preview Content */,
 			);
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C181BFC2BB5D4EF00536ACD /* Sturldata.swift in Sources */,
 				5C181BF82BB4437000536ACD /* EmojiArtDocumentView.swift in Sources */,
 				5C181BFA2BB446B700536ACD /* Extensions.swift in Sources */,
 				5C181BF42BB4410D00536ACD /* EmojiArt.swift in Sources */,
