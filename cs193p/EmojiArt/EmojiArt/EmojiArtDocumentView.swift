@@ -9,11 +9,11 @@ import SwiftUI
 
 struct EmojiArtDocumentView: View {
     typealias Emoji = EmojiArt.Emoji
+    
     @ObservedObject var document: EmojiArtDocument
     
-    
     private let paletteEmojiSize: CGFloat = 40
-    
+
     var body: some View {
         VStack(spacing: 0) {
             documentBody
@@ -38,43 +38,52 @@ struct EmojiArtDocumentView: View {
             }
         }
     }
-
-    @State private var zoom: CGFloat = 1
-    @State private var pan: CGOffset = .zero
-    
-    @GestureState private var gestureZoom: CGFloat = 1
-    @GestureState private var gesturePan: CGOffset = .zero
-
-    
-    private var zoomGesture: some Gesture {
-        MagnificationGesture()
-            .updating($gestureZoom) { value, gestureZoom, _ in
-                gestureZoom = value
-            }
-            .onEnded { value in
-                zoom *= value
-            }
-    }
-    
-    private var panGesture: some Gesture {
-        DragGesture()
-            .updating($gesturePan) { value, gesturePan, _ in
-                gesturePan = value.translation
-            }
-            .onEnded{ value in
-                pan += value.translation
-            }
-    }
     
     @ViewBuilder
     private func documentContents(in geometry: GeometryProxy) -> some View {
-        AsyncImage(url: document.background)
+        AsyncImage(url: document.background) { phase in
+            if let image = phase.image {
+                image
+            } else if let url = document.background {
+                if phase.error != nil {
+                    Text("\(url)")
+                } else {
+                    ProgressView()
+                }
+            }
+        }
             .position(Emoji.Position.zero.in(geometry))
         ForEach(document.emojis) { emoji in
             Text(emoji.string)
                 .font(emoji.font)
                 .position(emoji.position.in(geometry))
         }
+    }
+
+    @State private var zoom: CGFloat = 1
+    @State private var pan: CGOffset = .zero
+    
+    @GestureState private var gestureZoom: CGFloat = 1
+    @GestureState private var gesturePan: CGOffset = .zero
+    
+    private var zoomGesture: some Gesture {
+        MagnificationGesture()
+            .updating($gestureZoom) { inMotionPinchScale, gestureZoom, _ in
+                gestureZoom = inMotionPinchScale
+            }
+            .onEnded { endingPinchScale in
+                zoom *= endingPinchScale
+            }
+    }
+    
+    private var panGesture: some Gesture {
+        DragGesture()
+            .updating($gesturePan) { inMotionDragGestureValue, gesturePan, _ in
+                gesturePan = inMotionDragGestureValue.translation
+            }
+            .onEnded { endingDragGestureValue in
+                pan += endingDragGestureValue.translation
+            }
     }
     
     private func drop(_ sturldatas: [Sturldata], at location: CGPoint, in geometry: GeometryProxy) -> Bool {
@@ -87,7 +96,7 @@ struct EmojiArtDocumentView: View {
                 document.addEmoji(
                     emoji,
                     at: emojiPosition(at: location, in: geometry),
-                    size: Int(paletteEmojiSize / zoom)
+                    size: paletteEmojiSize / zoom
                 )
                 return true
             default:
@@ -106,10 +115,9 @@ struct EmojiArtDocumentView: View {
     }
 }
 
-
-
-
-#Preview {
-    EmojiArtDocumentView(document: EmojiArtDocument())
-        .environmentObject(PaletteStore(named: "Preview"))
+struct EmojiArtDocumentView_Previews: PreviewProvider {
+    static var previews: some View {
+        EmojiArtDocumentView(document: EmojiArtDocument())
+            .environmentObject(PaletteStore(named: "Preview"))
+    }
 }
