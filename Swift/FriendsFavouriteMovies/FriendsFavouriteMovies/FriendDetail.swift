@@ -1,44 +1,43 @@
 //
-//  MovieDetail.swift
+//  FriendDetail.swift
 //  FriendsFavouriteMovies
 //
-//  Created by Yixuan Dai on 06/05/2024.
+//  Created by Yixuan Dai on 07/05/2024.
 //
 
 import SwiftUI
+import SwiftData
 
-struct MovieDetail: View {
-    @Bindable var movie: Movie
+struct FriendDetail: View {
+    @Bindable var friend: Friend
     let isNew: Bool
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     
-    init(movie: Movie, isNew: Bool = false) {
-        self.movie = movie
-        self.isNew = isNew
-    }
+    @Query(sort: \Movie.title) private var movies: [Movie]
     
-    var sortedFriends: [Friend] {
-        movie.favoritedBy.sorted { first, second in
-            first.name < second.name
-        }
+    init(friend: Friend, isNew: Bool = false) {
+        self.friend = friend
+        self.isNew = isNew
     }
     
     var body: some View {
         Form {
-            TextField("Movie title", text: $movie.title)
-            DatePicker("Release date", selection: $movie.releaseDate, displayedComponents: .date)
+            TextField("Name", text: $friend.name)
+                .autocorrectionDisabled()
             
-            if !movie.favoritedBy.isEmpty {
-                Section("Favorited by") {
-                    ForEach(sortedFriends) { friend in
-                        Text(friend.name)
-                    }
+            Picker("Favorite Movie", selection: $friend.favoriteMovie) {
+                Text("None")
+                    .tag(nil as Movie?)
+                
+                ForEach(movies) { movie in
+                    Text(movie.title)
+                        .tag(movie as Movie?)
                 }
             }
         }
-        .navigationTitle(isNew ? "New Movie" : "Movie")
+        .navigationTitle(isNew ? "New Friend" : "Friend")
         .toolbar {
             if isNew {
                 ToolbarItem(placement: .confirmationAction) {
@@ -49,7 +48,7 @@ struct MovieDetail: View {
                 
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
-                        modelContext.delete(movie)
+                        modelContext.delete(friend)
                         dismiss()
                     }
                 }
@@ -60,15 +59,14 @@ struct MovieDetail: View {
 
 #Preview {
     NavigationStack {
-        MovieDetail(movie: SampleData.shared.movie)
+        FriendDetail(friend: SampleData.shared.friend)
     }
     .modelContainer(SampleData.shared.modelContainer)
 }
 
-
-#Preview("New Movie") {
+#Preview("New Friend") {
     NavigationStack {
-        MovieDetail(movie: SampleData.shared.movie, isNew: true)
+        FriendDetail(friend: SampleData.shared.friend, isNew: true)
             .navigationBarTitleDisplayMode(.inline)
     }
     .modelContainer(SampleData.shared.modelContainer)
