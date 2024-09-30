@@ -24,42 +24,41 @@ struct MovieList: View {
 
     var body: some View {
 
-            Group {
-                if !movies.isEmpty {
-                    List {
-                        ForEach(movies) { movie in
-                            NavigationLink {
-                                MovieDetail(movie: movie)
-                            } label: {
-                                Text(movie.title)
-                            }
+        Group {
+            if !movies.isEmpty {
+                List {
+                    ForEach(movies) { movie in
+                        NavigationLink {
+                            MovieDetail(movie: movie)
+                        } label: {
+                            Text(movie.title)
                         }
-                        .onDelete(perform: deleteItems)
                     }
-                } else {
-                    ContentUnavailableView {
-                        Label("No Movies", systemImage: "film.stack")
-                    }
+                    .onDelete(perform: deleteItems)
+                }
+            } else {
+                ContentUnavailableView {
+                    Label("No Movies", systemImage: "film.stack")
                 }
             }
-            .navigationTitle("Movies")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addMovie) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+        }
+        .navigationTitle("Movies")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+            ToolbarItem {
+                Button(action: addMovie) {
+                    Label("Add Item", systemImage: "plus")
                 }
             }
-            .sheet(item: $newMovie) { movie in
-                NavigationStack {
-                    MovieDetail(movie: movie, isNew: true)
-                }
-                .interactiveDismissDisabled()
+        }
+        .sheet(item: $newMovie) { movie in
+            NavigationStack {
+                MovieDetail(movie: movie, isNew: true)
             }
-
+            .interactiveDismissDisabled()
+        }
     }
 
     private func addMovie() {
